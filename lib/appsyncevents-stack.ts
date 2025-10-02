@@ -1,6 +1,6 @@
 import { Stack, type StackProps, RemovalPolicy } from 'aws-cdk-lib';
 import type { Construct } from 'constructs';
-import { Runtime, Tracing } from 'aws-cdk-lib/aws-lambda';
+import { CfnFunction, Runtime, Tracing } from 'aws-cdk-lib/aws-lambda';
 import { NodejsFunction, OutputFormat } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { LogGroup, RetentionDays } from 'aws-cdk-lib/aws-logs';
 import {
@@ -49,6 +49,7 @@ export class AppsynceventsStack extends Stack {
         name: 'id',
         type: AttributeType.STRING,
       },
+      removalPolicy: RemovalPolicy.DESTROY,
     });
     const ddbDs = api.addDynamoDbDataSource('ddbsource', table);
 
